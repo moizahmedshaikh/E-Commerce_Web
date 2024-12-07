@@ -106,14 +106,19 @@ const Navbar = () => {
           className={`top-0 fixed ${navOpen} transform transition-all duration-500 delay-300 flex justify-center flex-col h-screen w-[80%] sm:w-[60%]  bg-[#ffffff] z-[10000] space-y-6`}
         >
           <div className="flex justify-center gap-9 items-center mb-10">
-            <HeartIcon className="sm:w-12 w-8" />
-            <ShoppingCartIcon className="sm:w-12 w-8" />
+            <Link className="flex items-center" href={"/wishlist"}>
+            <HeartIcon onClick={closeNavHandler} className="sm:w-12 w-8" />
+            </Link>
+            <Link className="flex items-center" href={"/cart"}>
+            <ShoppingCartIcon onClick={closeNavHandler} className="sm:w-12 w-8" />
+            </Link>
+            
           </div>
 
           {Navlinks.map((link) => {
             return (
-              <Link className="flex" key={link.id} href={link.url}>
-                <p className="nav_links text-[20px] ml-12 border-b-[1.5px] pb-2 sm:text-[30px] text-black">
+              <Link  className="flex" key={link.id} href={link.url}>
+                <p onClick={closeNavHandler} className="nav_links text-[20px] ml-12 border-b-[1.5px] pb-2 sm:text-[30px] text-black">
                   {link.lable}
                 </p>
               </Link>

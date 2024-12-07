@@ -104,7 +104,7 @@ const data = [
 const data2 = [
   {
     name: "The north coat",
-    image: "/jacket.png",
+    image: "/Jacket.png",
     price: 260,
     price2: 300,
     rating: {
