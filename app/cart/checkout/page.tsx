@@ -6,7 +6,7 @@ import { useShoppingCart } from "use-shopping-cart";
 import { useRouter } from "next/navigation";
 
 const Checkout = () => {
-  const { cartDetails, clearCart } = useShoppingCart();
+  const { cartDetails, clearCart, totalPrice } = useShoppingCart();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -129,7 +129,7 @@ const Checkout = () => {
 
             <div className="flex justify-between items-center pb-3 mt-8 border-b-2 border-gray-500">
               <h2>Subtotal</h2>
-              <p>$200</p>
+              <p>${totalPrice}</p>
             </div>
 
             <div className="flex justify-between items-center pb-3 mt-8 border-b-2 border-gray-500">
@@ -139,7 +139,7 @@ const Checkout = () => {
 
             <div className="flex justify-between items-center pb-3 mt-8 ">
               <h2>Total:</h2>
-              <p>$6273</p>
+              <p>${totalPrice}</p>
             </div>
 
             <button
