@@ -1,12 +1,11 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import {
-  HeartIcon, EyeIcon
-} from "@heroicons/react/24/outline";
-
+import { HeartIcon, EyeIcon } from "@heroicons/react/24/outline";
 
 import { FaStar } from "react-icons/fa";
+import Link from "next/link";
+import AddToCart from "./AddToCart";
 
 interface ProductCardsProps {
   name: string;
@@ -17,6 +16,7 @@ interface ProductCardsProps {
   review: number;
   images: string;
   isNew: boolean;
+  slug:string
 }
 
 const ProductCard = ({
@@ -26,24 +26,28 @@ const ProductCard = ({
   rating,
   review,
   images,
+  slug
 }: ProductCardsProps) => {
   return (
-    <Card className="group relative overflow-hidden">
+    <Card className=" group relative overflow-hidden">
       <CardContent className="p-6 md:p-0">
         <div className="relative  aspect-square bg-gray-100 rounded-md">
+          <Link href={`/productDetails/${slug}`}>
           <Image src={images} alt={name} className="w-full p-10" fill />
+          </Link>
           <div className="p-2 absolute right-3 top-3 rounded-full bg-white">
-          <HeartIcon className=" w-4"/>
+            <HeartIcon className=" w-4" />
           </div>
           <div className="p-2 absolute right-3 top-12 rounded-full bg-white">
-          <EyeIcon className=" w-4"/>
+            <EyeIcon className=" w-4" />
           </div>
 
-           {/* Add to Cart Section */}
-      <div className="bg-black bottom-0 absolute flex items-center justify-center w-full h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
-        Add To Cart
-      </div>
-
+          {/* Add to Cart Section */}
+          <div className="bg-black bottom-0  absolute flex items-center justify-center w-full h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer ">
+            <AddToCart displayName="Add to Cart" name={name} images={images} price={price}/>
+            
+          </div>
+          
         </div>
 
         <div className="p-4">

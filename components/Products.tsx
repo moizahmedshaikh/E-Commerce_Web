@@ -16,11 +16,9 @@ export type ProductCardsProps = {
   name: string;
   image: string;
   price: number;
-  price2:number;
-  rating: {
-    rate: number;
-    count: number;
-  };
+  priceWithoutDiscount:number;
+  rating: number
+  slug:string
 };
 
 type ProductSection = {
@@ -59,14 +57,15 @@ const Products = ({
             {products?.map((prod, index) => {
               return (
                 <ProductCard
+                slug={prod.slug}
                   key={index}
                   images={prod.image}
                   name={prod.name}
-                  price={prod.price2}
+                  price={prod.priceWithoutDiscount}
                   originalPrice={prod.price}
                   discount={"12%"}
-                  rating={prod.rating.rate}
-                  review={prod.rating.count}
+                  rating={prod.rating}
+                  review={prod.rating}
                   isNew
                 />
               );
@@ -90,14 +89,16 @@ const Products = ({
                     >
                       <div className="p-4">
                         <ProductCard
+                slug={prod.slug}
+
                           key={index}
                           images={prod.image}
                           name={prod.name}
                           price={prod.price}
-                          originalPrice={prod.price2}
+                          originalPrice={prod.priceWithoutDiscount}
                           discount={"12%"}
-                          rating={prod.rating.rate}
-                          review={prod.rating.count}
+                          rating={prod.rating}
+                          review={prod.rating}
                           isNew
                         />
                       </div>

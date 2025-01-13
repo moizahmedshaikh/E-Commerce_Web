@@ -1,14 +1,14 @@
 // app/layout.tsx
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import type { Metadata } from "next";
-import {Poppins} from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from '@/components/Footer';
+import Footer from "@/components/Footer";
+import CartProvider from "@/components/Provider";
 
 const font = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
@@ -27,15 +27,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${font.className} ${font.className} antialiased`}
-      >
+      <body className={`${font.className} ${font.className} antialiased`}>
         {/* <TopHeader/> */}
-        <main className="max-w-[1440px] mx-auto">
-        <Navbar/>
-        {children}
-        <Footer/>
-        </main>
+        <CartProvider>
+          <main className="max-w-[1440px] mx-auto">
+            <Navbar />
+            {children}
+            <Footer />
+          </main>
+        </CartProvider>
       </body>
     </html>
   );

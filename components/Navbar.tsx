@@ -49,13 +49,13 @@ const Navbar = () => {
         </div>
 
         <div className="max-w-[347px] flex gap-[24px]">
-          <div className=" md:w-[243px] w-[150px] md:h-[38px] h-[30px] py-[7px] pr-2 md:pl-5 rounded-[4px] items-center flex justify-between bg-[#F5F5F5]">
+          <div className=" md:w-[243px] w-[150px]  md:flex hidden md:h-[38px] h-[30px] py-[7px] pr-2 md:pl-5 rounded-[4px] items-center justify-between bg-[#F5F5F5]">
             <input
               type="text"
               placeholder="What are you looking for?"
               className=" pr-3 pl-5 bg-[#F5F5F5] md:text-[12px] text-[8px] leading-[18px] "
             />
-            <MagnifyingGlassIcon className="w-[16px]  top-4 left-4 h-[16px] text-black" />
+            <MagnifyingGlassIcon className="w-[16px] top-4 left-4 h-[16px] text-black" />
           </div>
           <div className="lg:flex hidden gap-4">
             <Link className="flex items-center" href={"/wishlist"}>

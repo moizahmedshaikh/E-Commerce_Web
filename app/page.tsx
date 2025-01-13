@@ -6,228 +6,50 @@ import Products from "@/components/Products";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import CustomerShip from "./about/CustomerShip";
+import { client } from "@/sanity/lib/client";
 
-const data = [
-  {
-    name: "HAVIT Gamepad",
-    image: "/product_img/game.png",
-    price: 120,
-    price2: 150,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "AK-900 Wired Keyboard",
-    image: "/product_img/keyboard.png",
-    price: 960,
-    price2: 999,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
+ const getData = async () => {
+  const query = `*[_type == "product" && "Todays" in tags]{
+  name,
+    "image": image.asset->url,
+      price,
+    priceWithoutDiscount,
+    rating,
+    "slug":slug.current
+}`;
 
-  {
-    name: "IPS LCD Gaming Monitor",
-    image: "/product_img/monitor.png",
-    price: 370,
-    price2: 420,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
+  const data = await client.fetch(query);
+  // console.log(data)
+  return data;
+};
 
-  {
-    name: "S-Series Comfort Chair ",
-    image: "/chair.png",
-    price: 375,
-    price2: 420,
-    rating: {
-      rate: 3,
-      count: 23,
-    },
-  },
+export const getData2 = async () => {
+  const query = `*[_type == "product" && "Month" in tags]{
+  name,
+    "image": image.asset->url,
+      price,
+    priceWithoutDiscount,
+    rating,
+    "slug":slug.current
+}`;
 
-  {
-    name: "HAVIT Gamepad",
-    image: "/product_img/game.png",
-    price: 120,
-    price2: 150,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
+  const data2 = await client.fetch(query);
+  return data2;
+};
 
-  {
-    name: "IPS LCD Gaming Monitor",
-    image: "/product_img/monitor.png",
-    price: 90,
-    price2: 130,
-    rating: {
-      rate: 4,
-      count: 23,
-    },
-  },
+const getData3 = async () => {
+  const query = `*[_type == "product"][0...8]{
+  name,
+    "image": image.asset->url,
+      price,
+    priceWithoutDiscount,
+    rating,
+    "slug":slug.current
+}`;
 
-  {
-    name: "S-Series Comfort Chair ",
-    image: "/chair.png",
-    price: 370,
-    price2: 430,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-
-  {
-    name: "AK-900 Wired Keyboard",
-    image: "/product_img/keyboard.png",
-    price: 378,
-    price2: 420,
-    rating: {
-      rate: 2,
-      count: 23,
-    },
-  },
-
- 
-];
-
-
-
-
-const data2 = [
-  {
-    name: "The north coat",
-    image: "/Jacket.png",
-    price: 260,
-    price2: 300,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "Gucci duffle bag",
-    image: "/bag.png",
-    price: 190,
-    price2: 200,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "RGB liquid CPU Cooler",
-    image: "/cpu.png",
-    price: 160,
-    price2: 200,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "Small BookSelf",
-    image: "/books.png",
-    price: 176,
-    price2: 210,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-];
-
-
-const data3 = [
-  {
-    name: "Breed Dry Dog Food",
-    image: "/dog-food.png",
-    price: 100,
-    price2: 150,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "CANON EOS DSLR Camera",
-    image: "/canon.png",
-    price: 360,
-    price2: 400,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "ASUS FHD Gaming Laptop",
-    image: "/laptop.png",
-    price: 700,
-    price2: 750,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "Curology Product Set ",
-    image: "/product-set.png",
-    price: 500,
-    price2: 550,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-
-  {
-    name: "Kids Electric Car",
-    image: "/car.png",
-    price: 960,
-    price2: 1000,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "Jr. Zoom Soccer Cleats",
-    image: "/shoes.png",
-    price: 1160,
-    price2: 1200,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "GP11 Shooter USB Gamepad",
-    image: "/gamepad.png",
-    price: 660,
-    price2: 700,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-  {
-    name: "Quilted Satin Jacket",
-    image: "/jacket2.png",
-    price: 660,
-    price2: 690,
-    rating: {
-      rate: 12,
-      count: 23,
-    },
-  },
-];
+  const data3 = await client.fetch(query);
+  return data3;
+};
 
 const category = [
   {
@@ -257,31 +79,13 @@ const category = [
   },
 ];
 
-// const category2 = [
-//   {
-//     img: "/category2/van.png",
-//     name: "Phones",
-//     description: "Free delivery for all orders over $140",
-//   },
-//   {
-//     img: "/category2/headphone.png",
-//     name: "Phones",
-//     description: "Friendly 24/7 customer support",
-//   },
-//   {
-//     img: "/category2/tickmark.png",
-//     name: "Phones",
-//     description: "We reurn money within 30 days",
-//   },
-// ];
+export default async function Home() {
+  const data = await getData();
 
+  const data2 = await getData2();
 
+  const data3 = await getData3();
 
-
-
-
-
-export default function Home() {
   return (
     <section>
       <Hero />
