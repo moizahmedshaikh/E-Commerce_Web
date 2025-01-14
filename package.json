@@ -31,6 +31,7 @@
     "react-toastify": "^11.0.2",
     "sanity": "^3.69.0",
     "sharp": "^0.33.5",
+    "shipengine": "^1.0.7",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.14",
     "swiper": "^11.1.15",

@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 
 function page() {
@@ -83,6 +84,11 @@ function page() {
           </div>
         </div>
       </div>
+
+
+
+
+
     </div>
   );
 }

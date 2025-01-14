@@ -21,10 +21,12 @@ import {
 import { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { Navlinks } from "@/constant/Navlinks";
+import { useShoppingCart } from "use-shopping-cart";
 
 const Navbar = () => {
-  const [showNav, setShowNav] = useState(false);
+  const { cartCount } = useShoppingCart();
 
+  const [showNav, setShowNav] = useState(false);
   const showNavHandler = () => setShowNav(true);
   const closeNavHandler = () => setShowNav(false);
 
@@ -61,11 +63,21 @@ const Navbar = () => {
             <Link className="flex items-center" href={"/wishlist"}>
               <HeartIcon className="w-[20px] " />
             </Link>
-            <Link className="flex items-center" href={"/cart"}>
-              <ShoppingCartIcon className="w-[20px] " />
+            <Link className="flex items-center" href="/cart">
+              <div className="relative">
+                <ShoppingCartIcon
+                  onClick={closeNavHandler}
+                  className="w-[20px] text-gray-800"
+                />
+                {cartCount ? (
+                  <span className="absolute -top-2 -right-2 flex items-center justify-center w-4 h-4 text-xs font-bold text-white bg-red-500 rounded-full">
+                    {cartCount}
+                  </span>
+                ):""}
+              </div>
             </Link>
 
-            <DropdownMenu >
+            <DropdownMenu>
               <DropdownMenuTrigger>
                 <UserIcon className=" w-6 p-[2px] bg-red-500 text-white rounded-full" />
               </DropdownMenuTrigger>
@@ -80,12 +92,19 @@ const Navbar = () => {
                   </DropdownMenuLabel>
                 </div>
 
-                
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-center">My Order</DropdownMenuItem>
-                <DropdownMenuItem className="text-center">My Cancellations</DropdownMenuItem>
-                <DropdownMenuItem className="text-center">My Reviews</DropdownMenuItem>
-                <DropdownMenuItem className="text-center">Logout</DropdownMenuItem>
+                <DropdownMenuItem className="text-center">
+                  My Order
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-center">
+                  My Cancellations
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-center">
+                  My Reviews
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-center">
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -107,24 +126,36 @@ const Navbar = () => {
         >
           <div className="flex justify-center gap-9 items-center mb-10">
             <Link className="flex items-center" href={"/wishlist"}>
-            <HeartIcon onClick={closeNavHandler} className="sm:w-12 w-8" />
+              <HeartIcon onClick={closeNavHandler} className="sm:w-12 w-8" />
             </Link>
-            <Link className="flex items-center" href={"/cart"}>
-            <ShoppingCartIcon onClick={closeNavHandler} className="sm:w-12 w-8" />
+            <Link className="flex items-center" href="/cart">
+              <div className="relative">
+                <ShoppingCartIcon
+                  onClick={closeNavHandler}
+                  className="sm:w-12 w-8 text-gray-800"
+                />
+                {cartCount ? (
+                  <span className="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full">
+                    {cartCount}
+                  </span>
+                ):""}
+              </div>
             </Link>
-            
           </div>
 
           {Navlinks.map((link) => {
             return (
-              <Link  className="flex" key={link.id} href={link.url}>
-                <p onClick={closeNavHandler} className="nav_links text-[20px] ml-12 border-b-[1.5px] pb-2 sm:text-[30px] text-black">
+              <Link className="flex" key={link.id} href={link.url}>
+                <p
+                  onClick={closeNavHandler}
+                  className="nav_links text-[20px] ml-12 border-b-[1.5px] pb-2 sm:text-[30px] text-black"
+                >
                   {link.lable}
                 </p>
               </Link>
             );
           })}
-          
+
           <CgClose
             onClick={closeNavHandler}
             className="absolute top-[0.7rem] right-[1.4rem] w-6 h-6 sm:w-8 sm:h-8 text-black"

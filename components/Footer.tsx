@@ -125,7 +125,7 @@ function Footer() {
       </div>
 
       <p className="text-[16px] text-[#F9F9F933] text-center py-3">
-        Copyright Rimel 2022. All right reserved{" "}
+        Copyright Moiz Ahmed 2024. All right reserved{" "}
       </p>
     </div>
   );
